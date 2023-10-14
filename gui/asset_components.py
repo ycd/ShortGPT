@@ -57,7 +57,7 @@ class AssetComponentsUtils:
     
     @classmethod 
     def captions_checkbox(cls):
-        if cls.instance_captions_checkbox is None:
+        if cls.instance_captions_enabled is None:
             caption_enabled = gr.CheckboxGroup(
                 choices=["True", "False"],
                 interactive=True,
@@ -66,7 +66,7 @@ class AssetComponentsUtils:
 
             os.environ["CAPTIONS_ENABLED"] = caption_enabled.value
 
-        return cls.instance_captions_checkbox
+        return cls.instance_captions_enabled
 
     @classmethod
     def background_music_checkbox(cls):
