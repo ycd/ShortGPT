@@ -6,7 +6,8 @@ import gradio as gr
 from gui.asset_components import (background_music_checkbox,
                                   background_video_checkbox,
                                   getBackgroundMusicChoices,
-                                  getBackgroundVideoChoices)
+                                  getBackgroundVideoChoices,
+                                  captions_checkbox)
 from gui.ui_abstract_component import AbstractComponentUI
 from shortGPT.config.asset_db import AssetDatabase
 
@@ -32,10 +33,10 @@ class AssetLibrary(AbstractComponentUI):
                         gr.Markdown("Preview")
                         asset_preview_ui = gr.HTML(self.__get_first_preview)
                         delete_button = gr.Button("🗑️ Delete", scale=0, variant="primary")
-                        delete_button.click(self.__delete_clicked, [delete_button], [asset_dataframe_ui, asset_preview_ui, delete_button, background_video_checkbox, background_music_checkbox])
+                        delete_button.click(self.__delete_clicked, [delete_button], [asset_dataframe_ui, asset_preview_ui, delete_button, background_video_checkbox, background_music_checkbox, captions_checkbox])
                         asset_dataframe_ui.select(self.__preview_asset, [asset_dataframe_ui], [asset_preview_ui, delete_button])
                 add_youtube_link.click(
-                    self.__verify_youtube_asset_inputs, [asset_name, youtube_url, asset_type], []).success(self.__add_youtube_asset, [asset_name, youtube_url, asset_type], [asset_dataframe_ui, asset_preview_ui, delete_button, accordion, background_video_checkbox, background_music_checkbox])
+                    self.__verify_youtube_asset_inputs, [asset_name, youtube_url, asset_type], []).success(self.__add_youtube_asset, [asset_name, youtube_url, asset_type], [asset_dataframe_ui, asset_preview_ui, delete_button, accordion, background_video_checkbox, captions_checkbox])
         return asset_library_ui
 
     def __fulfill_df(self):

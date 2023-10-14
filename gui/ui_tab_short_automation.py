@@ -63,7 +63,7 @@ class ShortAutomationUI(AbstractComponentUI):
 
             video_folder.click(lambda _: AssetComponentsUtils.start_file(os.path.abspath("videos/")))
 
-            createButton.click(self.inspect_create_inputs, inputs=[AssetComponentsUtils.background_video_checkbox(), AssetComponentsUtils.background_music_checkbox(), watermark, short_type, facts_subject], outputs=[generation_error]).success(self.create_short, inputs=[
+            createButton.click(self.inspect_create_inputs, inputs=[AssetComponentsUtils.background_video_checkbox(), AssetComponentsUtils.background_music_checkbox(), AssetComponentsUtils.captions_checkbox(), watermark, short_type, facts_subject], outputs=[generation_error]).success(self.create_short, inputs=[
                 numShorts,
                 short_type,
                 tts_engine,
@@ -74,7 +74,8 @@ class ShortAutomationUI(AbstractComponentUI):
                 AssetComponentsUtils.background_video_checkbox(),
                 AssetComponentsUtils.background_music_checkbox(),
                 facts_subject,
-                AssetComponentsUtils.voiceChoice()
+                AssetComponentsUtils.voiceChoice(),
+                AssetComponentsUtils.captions_checkbox()
             ], outputs=[output, video_folder, generation_error])
         self.short_automation = short_automation
         return self.short_automation
