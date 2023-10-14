@@ -135,12 +135,13 @@ class ContentShortEngine(AbstractContentEngine):
             if self._db_watermark:
                 videoEditor.addEditingStep(EditingStep.ADD_WATERMARK, {
                                            'text': self._db_watermark})
-
-            caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT
-            for timing, text in self._db_timed_captions:
-                videoEditor.addEditingStep(caption_type, {'text': text.upper(),
-                                                          'set_time_start': timing[0],
-                                                          'set_time_end': timing[1]})
+            
+            if os.getenv("CAPTIONS_ENABLED") == "True":
+                caption_type = EditingStep.ADD_CAPTION_SHORT_ARABIC if self._db_language == Language.ARABIC.value else EditingStep.ADD_CAPTION_SHORT
+                for timing, text in self._db_timed_captions:
+                    videoEditor.addEditingStep(caption_type, {'text': text.upper(),
+                                                            'set_time_start': timing[0],
+                                                            'set_time_end': timing[1]})
             if self._db_num_images:
                 for timing, image_url in self._db_timed_image_urls:
                     videoEditor.addEditingStep(EditingStep.SHOW_IMAGE, {'url': image_url,

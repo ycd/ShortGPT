@@ -32,6 +32,7 @@ class ShortAutomationUI(AbstractComponentUI):
                 tts_engine = gr.Radio([AssetComponentsUtils.ELEVEN_TTS, AssetComponentsUtils.EDGE_TTS], label="Text to speech engine", value=AssetComponentsUtils.ELEVEN_TTS, interactive=True)
                 self.tts_engine = tts_engine.value
                 with gr.Column(visible=True) as eleven_tts:
+                    print(ELEVEN_SUPPORTED_LANGUAGES)
                     language_eleven = gr.Radio([lang.value for lang in ELEVEN_SUPPORTED_LANGUAGES], label="Language", value="English", interactive=True)
                     AssetComponentsUtils.voiceChoice()
                 with gr.Column(visible=False) as edge_tts:
@@ -52,6 +53,7 @@ class ShortAutomationUI(AbstractComponentUI):
 
                 AssetComponentsUtils.background_video_checkbox()
                 AssetComponentsUtils.background_music_checkbox()
+                AssetComponentsUtils.captions_checkbox()
 
                 createButton = gr.Button(label="Create Shorts")
 

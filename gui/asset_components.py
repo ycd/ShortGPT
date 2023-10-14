@@ -16,6 +16,7 @@ class AssetComponentsUtils:
     instance_background_music_checkbox = None
     instance_voiceChoice = None
     instance_voiceChoiceTranslation = None
+    instance_captions_enabled = "False"
 
     @classmethod
     def getBackgroundVideoChoices(cls):
@@ -53,6 +54,19 @@ class AssetComponentsUtils:
                 label="Choose background video",
             )
         return cls.instance_background_video_checkbox
+    
+    @classmethod 
+    def captions_checkbox(cls):
+        if cls.instance_captions_checkbox is None:
+            caption_enabled = gr.CheckboxGroup(
+                choices=["True", "False"],
+                interactive=True,
+                label="Enable caption generation",
+            )
+
+            os.environ["CAPTIONS_ENABLED"] = caption_enabled.value
+
+        return cls.instance_captions_checkbox
 
     @classmethod
     def background_music_checkbox(cls):
