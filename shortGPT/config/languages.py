@@ -85,7 +85,8 @@ ELEVEN_SUPPORTED_LANGUAGES=[Language.ENGLISH,
     Language.GERMAN,
     Language.POLISH,
     Language.ITALIAN,
-    Language.PORTUGUESE]
+    Language.PORTUGUESE,
+    Language.TURKISH]
 
 LANGUAGE_ACRONYM_MAPPING={
     Language.ENGLISH : "en",
