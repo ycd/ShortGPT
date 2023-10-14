@@ -58,13 +58,11 @@ class AssetComponentsUtils:
     @classmethod 
     def captions_checkbox(cls):
         if cls.instance_captions_enabled is None:
-            caption_enabled = gr.CheckboxGroup(
+            cls.caption_enabled = gr.CheckboxGroup(
                 choices=["True", "False"],
                 interactive=True,
                 label="Enable caption generation",
             )
-
-            os.environ["CAPTIONS_ENABLED"] = caption_enabled.value
 
         return cls.instance_captions_enabled
 
